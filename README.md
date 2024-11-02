@@ -1,5 +1,5 @@
 # Set-up-a-SOC-alert-system-to-monitor-system-security
-1. Kiến trúc hệ thống
+# Kiến trúc hệ thống
 Web Server (Nginx): Lưu trữ website và tạo log truy cập của người dùng.
 Gateway (Nginx): Hoạt động như một proxy, thu thập log từ Web Server và chuyển log tới Kafka.
 Message Queue (Kafka): Lưu trữ và chuyển tiếp log tới Graylog, đảm bảo tính liên tục của dữ liệu log.
