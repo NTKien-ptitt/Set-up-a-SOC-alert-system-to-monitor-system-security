@@ -58,7 +58,7 @@ http {
 - type: log
   enabled: true
   paths:
-    - /var/log/nginx/error.log
+- /var/log/nginx/error.log
 
 output.kafka:
   hosts: ["kafka1:9092", "kafka2:9092"]
@@ -102,7 +102,7 @@ sudo tail -f /var/log/filebeat/filebeat
 ```bash
 kafka-topics.sh --describe --topic nginx-logs --bootstrap-server localhost:9092
 ```
-- Xem lag của consumer groups
+- Xem log của consumer groups
 ```bash
 kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group filebeat
 ```
