@@ -1,4 +1,13 @@
 # Để cài đặt Apache Kafka trên một hệ thống Linux, dưới đây là hướng dẫn chi tiết từ việc cài đặt Zookeeper (bắt buộc để chạy Kafka) đến việc cấu hình và khởi động Kafka. 
+# [1. Cài đặt Java](#1-cài-đặt-java)
+# [2. Kiểm tra cài đặt Java](#2-kiểm-tra-cài-đặt-java)
+# [3. Tải Kafka](#3-tải-kafka)
+# [4. Cài đặt Zookeeper](#4-cài-đặt-zookeeper)
+# [5. Khởi động Kafka](#5-khởi-động-kafka)
+# [6. Tạo một Topic](#6-tạo-một-topic)
+# [7. Gửi và Nhận Tin Nhắn](#7-gửi-và-nhận-tin-nhắn)
+# [8. Dừng Zookeeper và Kafka](#8-dừng-zookeeper-và-kafka)
+
 
 ## 1: Cài đặt Java
 - Apache Kafka yêu cầu Java 8 hoặc cao hơn. Có thể cài đặt OpenJDK bằng cách chạy các lệnh sau:
