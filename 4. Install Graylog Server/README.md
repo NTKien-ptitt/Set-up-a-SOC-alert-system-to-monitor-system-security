@@ -1,6 +1,6 @@
 # Cài đặt Graylog trên môi trường Linux (root)
 
- [1. Cài đặt Java OpenJDK](#1-cài-đặt-java-openjdk)
+- [1. Cài đặt Java OpenJDK](#1-cài-đặt-java-openjdk)
 - [2. Cài đặt Elasticsearch](#2-cài-đặt-elasticsearch)
 - [3. Cài đặt MongoDB](#3-cài-đặt-mongodb)
 - [4. Cài đặt Graylog](#4-cài-đặt-graylog)
