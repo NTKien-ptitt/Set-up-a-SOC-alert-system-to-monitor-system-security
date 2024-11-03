@@ -1,4 +1,10 @@
 # Cài đặt Graylog trên môi trường Linux (root)
+
+ [1. Cài đặt Java OpenJDK](#1-cài-đặt-java-openjdk)
+- [2. Cài đặt Elasticsearch](#2-cài-đặt-elasticsearch)
+- [3. Cài đặt MongoDB](#3-cài-đặt-mongodb)
+- [4. Cài đặt Graylog](#4-cài-đặt-graylog)
+
 - Cập nhật hệ thống
 ```bash
 apt-get update && apt-get upgrade
@@ -94,5 +100,5 @@ systemctl daemon-reload
 systemctl restart graylog-server
 ```
 - Truy cập giao diện Web Graylog
-- Chúng ta tiến hành truy cập giao diện Web Graylog bằng cách tiến hành mở trình duyệt của chúng ta và truy cập link http://<IP_your_domain>:9000.
-- Tiến hành đăng nhập vào Graylog, user là admin, password là password lúc nảy chúng ta thực hiện đặt
+- Chúng ta tiến hành truy cập giao diện Web Graylog bằng cách tiến hành mở trình duyệt của chúng ta và truy cập link `http://<IP_your_domain>:9000`.
+- Tiến hành đăng nhập vào Graylog, `user` là `admin`, `password` là `password` lúc nảy chúng ta thực hiện đặt
