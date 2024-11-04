@@ -10,27 +10,19 @@
 # Hướng dẫn cài đặt và cấu hình
 
 1. [Cài đặt Nginx Webserver](#cai-dat-nginx-webserver)
-
 2. [Cài đặt Nginx Gateway (Reverse Proxy Nginx Webserver)](#cai-dat-nginx-gateway)
-
 3. [Cài đặt Message Queue Kafka](#cai-dat-message-queue-kafka)
-
 4. [Cài đặt Graylog server](#cai-dat-graylog-server)
-
 5. [Chuyển log từ Nginx Gateway vào Kafka](#chuyen-log-tu-nginx-gateway-vao-kafka)
-### 5.1 [Tổng quan giải pháp](#tong-quan-giai-phap)
-### 5.2 [Các bước thực hiện](#cac-buoc-thuc-hien)
-### 5.3 [Cài đặt và cấu hình Filebeat](#cai-dat-va-cau-hinh-filebeat)
-### 5.4 [Khởi động services](#khoi-dong-services)
-### 5.5 [Kiểm tra log trong Kafka](#kiem-tra-log-trong-kafka)
-### 5.6 [Monitoring và Troubleshooting](#monitoring-va-troubleshooting)
-
+- 5.1 [Tổng quan giải pháp](#tong-quan-giai-phap)
+- 5.2 [Các bước thực hiện](#cac-buoc-thuc-hien)
+- 5.3 [Cài đặt và cấu hình Filebeat](#cai-dat-va-cau-hinh-filebeat)
+- 5.4 [Khởi động services](#khoi-dong-services)
+- 5.5 [Kiểm tra log trong Kafka](#kiem-tra-log-trong-kafka)
+- 5.6 [Monitoring và Troubleshooting](#monitoring-va-troubleshooting)
 6. [Chuyển log từ Kafka đến Graylog](#chuyen-log-tu-kafka-den-graylog)
-
 7. [Cấu hình Graylog nhận log](#cau-hinh-graylog-nhan-log)
-
 8. [Thiết lập Rule Giám sát](#thiet-lap-rule-giam-sat)
-
 9. [Cấu hình Gửi Mail Cảnh Báo đến Người Giám Sát](#cau-hinh-gui-mail-canh-bao-den-nguoi-giam-sat)
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
