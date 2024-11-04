@@ -106,10 +106,89 @@ kafka-topics.sh --describe --topic nginx-logs --bootstrap-server localhost:9092
 ```bash
 kafka-consumer-groups.sh --bootstrap-server localhost:9092 --describe --group filebeat
 ```
-6. Chuyển log từ Kafka đến Graylog
+## 6. Chuyển log từ Kafka đến Graylog
+Tạo một topic trong Kafka để gửi log
+```bash
+bin/kafka-topics.sh --create --topic nginx-logs --bootstrap-server localhost:9092
+```
 
-7. Cấu hình Graylog nhận log
+## 7. Cấu hình Graylog nhận log
+Bước 1: Tạo Input Kafka trên Graylog
+- Đầu tiên, truy cập vào giao diện quản lý của Graylog.
+- Vào `System` > `Inputs` và chọn mục `Kafka`, sau đó nhấn `Launch new input`.
+- Chọn `Node` nơi bạn muốn `Input` hoạt động.
+Cấu hình các trường:
+- `Topic`: Nhập tên topic Kafka mà Graylog sẽ lắng nghe.
+- `Bootstrap servers`: Điền địa chỉ máy chủ Kafka (ví dụ: `localhost:9092`).
+- Các tùy chọn bổ sung như `Consumer Group`, `Threads`, và `Key Deserializer` có thể chỉnh sửa theo nhu cầu.
+- Nhấn `Save` để khởi chạy `Input`.
 
-8. Thiết lập Rule Giám sát
+Bước 2: Cấu hình Kafka Producer
+- Cấu hình `Kafka Producer`, đặt địa chỉ `Kafka Bootstrap servers` để đảm bảo kết nối đúng.
+- `Producer` phải được thiết lập để gửi log vào topic Kafka đã cấu hình trong Graylog.
+- Nếu dùng ứng dụng để gửi log, kiểm tra mã nguồn để đảm bảo log được gửi đúng topic.
 
-9. Cấu hình Cảnh báo cho Rule đã Giám sát
+## 8. Thiết lập Rule Giám sát
+Truy cập giao diện Graylog:
+- Đăng nhập vào Graylog và điều hướng đến `Alerts & Events` trong thanh `menu`.
+Tạo `Event Definition`:
+- Nhấp vào `Create Event Definition`.
+- Đặt tên cho `Rule`, ví dụ: “Cảnh báo truy cập trang Admin/Config”.
+- Thêm mô tả ngắn gọn về mục đích giám sát.
+Thiết lập `Filter & Aggregation`.
+- Trong phần Filter, sử dụng một truy vấn để giám sát các URL cụ thể. Ví dụ:
+```bash
+nginx.access.url:/admin OR nginx.access.url:/config
+```
+- `Time Range`: Đặt khoảng thời gian phù hợp (ví dụ: 1 phút) để Graylog kiểm tra các sự kiện.
+Cấu hình `Trigger & Threshhold`:
+- Đặt điều kiện kích hoạt sự kiện. Ví dụ, nếu có hơn 1 lần truy cập vào các URL nhạy cảm trong 1 phút, kích hoạt cảnh báo.
+- Cấu hình mức độ nghiêm trọng, như “High” nếu cần cảnh báo khẩn cấp.
+Thiết lập Hành động Cảnh báo (Notification):
+- Thêm một hành động khi `Rule` được kích hoạt, như:
+- Gửi Email: Nhập địa chỉ email của bạn hoặc nhóm quản trị.
+- Webhook: Tích hợp với các hệ thống khác, như Slack, nếu cần.
+Kiểm tra kỹ các thiết lập thông báo để đảm bảo nhận cảnh báo đúng cách.
+Lưu và Kích hoạt `Rule`:
+- Nhấn `Save` để lưu `Rule`.
+- Bật trạng thái `Rule` để Graylog bắt đầu giám sát.
+Kiểm tra Hoạt động
+- Để chắc chắn Rule hoạt động, thử truy cập vào /admin hoặc /config từ trình duyệt và kiểm tra xem Graylog có phát hiện và gửi cảnh báo hay không.
+
+## 9. Cấu hình Gửi Mail Cảnh Báo đến Người Giám Sát
+Tạo Notification
+Truy cập vào phần `Notifications`:
+- Đăng nhập vào Graylog và điều hướng đến `Alerts & Events` > `Notifications`.
+Tạo `Notification` mới:
+- Nhấp vào `Create Notification`.
+Điền thông tin:
+- `Name`: Đặt tên cho `Notification`, ví dụ: “Cảnh báo Truy cập Trang Nhạy cảm”.
+- `Type`: Chọn `Email Alert`.
+Cấu hình chi tiết Email:
+```bash
+Subject: Cảnh báo Truy cập Trang Nhạy cảm
+Body: 
+Cảnh báo: Đã phát hiện truy cập vào trang nhạy cảm.
+Thời gian: ${event.timestamp}
+URL: ${event.fields.url}
+```
+Recipients:
+- Nhập địa chỉ email của người giám sát (vd: admin@example.com).
+Lưu `Notification`:
+- Nhấn `Save` để lưu cấu hình.
+Gắn `Notification` vào `Rule` Giám sát
+Truy cập vào Event Definitions:
+
+- Quay lại `Alerts & Events` > `Event Definitions`.
+Chọn Rule giám sát:
+
+- Tìm `Rule` mà bạn đã tạo trước đó (ví dụ: “Cảnh báo truy cập trang Admin/Config”).
+Gắn `Notification`:
+
+- Nhấn vào `Rule` đó, sau đó nhấn `Add Notification`.
+- Chọn `Notification` mà bạn đã tạo và nhấn Save.
+3. Kiểm tra `Notification`
+Thực hiện kiểm tra:
+- Thử truy cập vào một trong các trang nhạy cảm (như /admin hoặc /config) từ trình duyệt.
+Xác minh Email:
+- Kiểm tra email của người giám sát để xem có nhận được cảnh báo hay không.
