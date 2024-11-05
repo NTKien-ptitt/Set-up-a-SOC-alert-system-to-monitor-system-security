@@ -9,7 +9,7 @@
 ![image](https://github.com/user-attachments/assets/374f04f0-be12-4cd3-9ce4-c5707f7f51a6)
 # Hướng dẫn cài đặt và cấu hình
 
-1. [Cài đặt Nginx Webserver](#cai-dat-nginx-webserver)
+1. [1. Cài đặt Nginx Webserver](#1.cai-dat-nginx-webserver)
 2. [Cài đặt Nginx Gateway (Reverse Proxy Nginx Webserver)](#cai-dat-nginx-gateway)
 3. [Cài đặt Message Queue Kafka](#cai-dat-message-queue-kafka)
 4. [Cài đặt Graylog server](#cai-dat-graylog-server)
