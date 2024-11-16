@@ -9,21 +9,22 @@
 ![image](https://github.com/user-attachments/assets/374f04f0-be12-4cd3-9ce4-c5707f7f51a6)
 # Hướng dẫn cài đặt và cấu hình
 
-1. [Cài đặt Nginx Webserver](#cai-dat-nginx-webserver)
-2. [Cài đặt Nginx Gateway (Reverse Proxy Nginx Webserver)](#cai-dat-nginx-gateway)
-3. [Cài đặt Message Queue Kafka](#cai-dat-message-queue-kafka)
-4. [Cài đặt Graylog server](#cai-dat-graylog-server)
-5. [Chuyển log từ Nginx Gateway vào Kafka](#chuyen-log-tu-nginx-gateway-vao-kafka)
-- 5.1 [5.1 Tổng quan giải pháp](#51-tong-quan-giai-phap)
-- 5.2 [5.2 Các bước thực hiện](#52-cac-buoc-thuc-hien)
-- 5.3 [5.3 Cài đặt và cấu hình Filebeat](#53-cai-dat-va-cau-hinh-filebeat)
-- 5.4 [5.3 Khởi động services](#54-khoi-dong-services)
-- 5.5 [5.5 Kiểm tra log trong Kafka](#55-kiem-tra-log-trong-kafka)
-- 5.6 [5.6 Monitoring và Troubleshooting](#56-monitoring-va-troubleshooting)
-6. [Chuyển log từ Kafka đến Graylog](#chuyen-log-tu-kafka-den-graylog)
-7. [Cấu hình Graylog nhận log](#cau-hinh-graylog-nhan-log)
-8. [Thiết lập Rule Giám sát](#thiet-lap-rule-giam-sat)
-9. [Cấu hình Gửi Mail Cảnh Báo đến Người Giám Sát](#cau-hinh-gui-mail-canh-bao-den-nguoi-giam-sat)
+- [1. Cài đặt Nginx Webserver](#1-cài-đặt-nginx-webserver)
+- [2. Cài đặt Nginx Gateway (Reverse Proxy Nginx Webserver)](#2-cài-đặt-nginx-gateway-reverse-proxy-nginx-webserver)
+- [3. Cài đặt Message Queue Kafka](#3-cài-đặt-message-queue-kafka)
+- [4. Cài đặt Graylog server](#4-cài-đặt-graylog-server)
+- [5. Chuyển log từ Nginx Gateway vào Kafka](#5-chuyển-log-từ-nginx-gateway-vào-kafka)
+  - [5.1 Tổng quan giải pháp](#51-tổng-quan-giải-pháp)
+  - [5.2 Các bước thực hiện](#52-các-bước-thực-hiện)
+  - [5.3 Cài đặt và cấu hình Filebeat](#53-cài-đặt-và-cấu-hình-filebeat)
+  - [5.4 Khởi động services](#54-khởi-động-services)
+  - [5.5 Kiểm tra log trong Kafka](#55-kiểm-tra-log-trong-kafka)
+  - [5.6 Monitoring và Troubleshooting](#56-monitoring-và-troubleshooting)
+- [6. Chuyển log từ Kafka đến Graylog](#6-chuyển-log-từ-kafka-đến-graylog)
+- [7. Cấu hình Graylog nhận log](#7-cấu-hình-graylog-nhận-log)
+- [8. Thiết lập Rule Giám sát](#8-thiết-lập-rule-giám-sát)
+- [9. Cấu hình Gửi Mail Cảnh Báo đến Người Giám Sát](#9-cấu-hình-gửi-mail-cảnh-báo-đến-người-giám-sát)
+
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -99,13 +100,13 @@ sudo systemctl restart nginx
 sudo systemctl start filebeat
 ```
 
-## 5.5 Kiểm tra log trong Kafka
+### 5.5 Kiểm tra log trong Kafka
 - Consume message từ topic nginx-logs:
 ```bash
 kafka-console-consumer.sh --bootstrap-server localhost:9092 \    --topic nginx-logs --from-beginning
 ```
 
-## 5.6. Monitoring và Troubleshooting
+### 5.6. Monitoring và Troubleshooting
 - Kiểm tra trạng thái Filebeat
 - Xem status
 ```bash
