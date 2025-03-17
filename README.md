@@ -1,4 +1,4 @@
-# Thiết lập hệ thống cảnh báo SOC để giám sát an ninh hệ thống
+# Thiết lập hệ thống cảnh báo SOC để giám sát an ninh hệ thống trên máy chủ website
 # Kiến trúc hệ thống
 - Web Server (Nginx): Lưu trữ website và tạo log truy cập của người dùng.
 - Gateway (Nginx): Hoạt động như một proxy, thu thập log từ Web Server và chuyển log tới Kafka.
